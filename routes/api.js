@@ -58,7 +58,7 @@ router.get("/getSessionID" + "/:participantID", (req, res) => {
         if(err) {
             return res.send(err);
         } else {
-            return res.send(result);
+            return res.send("Success with result " + result);
         }
     });
 });
@@ -69,6 +69,7 @@ router.get("/getSessionID" + "/:participantID", (req, res) => {
 */
 router.get("/InsertAssociation" + "/:participantID", (req, res) => {
     console.log(req.params);
+    console.log(req.body);
     let ParticipantID = req.params.participantID;
     
     let query = "INSERT INTO `AssociationTable`(ParticipantID) "
