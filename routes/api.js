@@ -67,10 +67,10 @@ router.get("/getSessionID" + "/:participantID", (req, res) => {
     Http Request for inserting data into the AssociationTable using url params
     Example Usage: http://localhost:5000/api/InsertAssociation/1
 */
-router.get("/InsertAssociation" + "/:participantID", (req, res) => {
+router.post("/InsertAssociation", (req, res) => {
     console.log(req.params);
     console.log(req.body);
-    let ParticipantID = req.params.participantID;
+    let ParticipantID = req.body.participantID;
     
     let query = "INSERT INTO `AssociationTable`(ParticipantID) "
                     + "VALUES ("+ParticipantID+");";
@@ -87,16 +87,16 @@ router.get("/InsertAssociation" + "/:participantID", (req, res) => {
     Http Request for inserting data into the dataTable using url params
     Example Usage: http://localhost:5000/api/InsertData/1/1/1/1/1/1/1
 */
-router.get("/InsertData" + "/:sessionID" + "/:e4Time" + "/:bvp" + "/:eda" + "/:ibi" + "/:heartRate" + "/:temperature",
-            (req, res) => {
+router.post("/InsertData", (req, res) => {
     console.log(req.params);
-    let SessionID = req.params.sessionID;
-    let E4Time = req.params.e4Time;
-    let BVP = req.params.bvp;
-    let EDA = req.params.eda;
-    let IBI = req.params.ibi;
-    let HeartRate = req.params.heartRate;
-    let Temperature = req.params.temperature;
+    console.log(req.body);
+    let SessionID = req.body.sessionID;
+    let E4Time = req.body.e4Time;
+    let BVP = req.body.bvp;
+    let EDA = req.body.eda;
+    let IBI = req.body.ibi;
+    let HeartRate = req.body.heartRate;
+    let Temperature = req.body.temperature;
     
     let query = "INSERT INTO `DataTable`(SessionID,UTC,E4Time,BVP,EDA,IBI,HeartRate,Temperature) "
                     + "VALUES ("+SessionID+",NOW(),"+E4Time+","+BVP+","+EDA+","+IBI+","+HeartRate+","+Temperature+");";
@@ -113,14 +113,14 @@ router.get("/InsertData" + "/:sessionID" + "/:e4Time" + "/:bvp" + "/:eda" + "/:i
     Http Request for inserting data into the AccelerationTable using url params
     Example Usage: http://localhost:5000/api/InsertAcceleration/1/1/1/1/1
 */
-router.get("/InsertAcceleration" + "/:sessionID" + "/:e4Time" + "/:accelX" + "/:accelY" + "/:accelZ",
-            (req, res) => {
+router.post("/InsertAcceleration", (req, res) => {
     console.log(req.params);
-    let SessionID = req.params.sessionID;
-    let E4Time = req.params.e4Time;
-    let AccelX = req.params.accelX;
-    let AccelY = req.params.accelY;
-    let AccelZ = req.params.accelZ;
+    console.log(req.body);
+    let SessionID = req.body.sessionID;
+    let E4Time = req.body.e4Time;
+    let AccelX = req.body.accelX;
+    let AccelY = req.body.accelY;
+    let AccelZ = req.body.accelZ;
     
     let query = "INSERT INTO `AccelerationTable`(SessionID,UTC,E4Time,AccelX,AccelY,AccelZ) "
                     + "VALUES ("+SessionID+",NOW(),"+E4Time+","+AccelX+","+AccelY+","+AccelZ+");";
