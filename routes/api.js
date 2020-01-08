@@ -10,8 +10,8 @@ let connection = mysql.createConnection(dbConfig);
     if database config is valid
 */
 router.get("/checkDatabaseConfig", (req, res) => {
-    res.send(dbConfig);
     console.log(dbConfig);
+    res.send(dbConfig);
 });
 
 /*
@@ -48,32 +48,39 @@ router.get("/getAccelerationTableContents", (req, res) => {
 
 /*
     Http Request for getting the SessionID from the AccelerationTable using the ParticipantID
-    Example Usage: http://localhost:5000/api/getSessionID/1
+    Example Usage: http://localhost:5000/api/getSessionID
+    Requesting Body: {
+        participantID: %d
+    }
 */
-router.get("/getSessionID" + "/:participantID", (req, res) => {
-    let ParticipantID = req.params.participantID;
-    let query = "SELECT SessionID FROM AssociationTable WHERE ParticipantID="+ParticipantID+";";
+router.get("/getSessionID", (req, res) => {
+    console.log(req.body);
+    let ParticipantID = req.body.participantID;
+    let query = "SELECT SessionID FROM AssociationTable WHERE ParticipantID="
+                    + ParticipantID + ";";
 
     let output = connection.query(query, (err, result) => {
         if(err) {
             return res.send(err);
         } else {
-            return res.send("Success with result " + result);
+            return res.json({sessionID: result[0].SessionID});
         }
     });
 });
 
 /*
     Http Request for inserting data into the AssociationTable using url params
-    Example Usage: http://localhost:5000/api/InsertAssociation/1
+    Example Usage: http://localhost:5000/api/InsertAssociation
+    Requesting Body: {
+        participantID: %d
+    }
 */
 router.post("/InsertAssociation", (req, res) => {
-    console.log(req.params);
     console.log(req.body);
     let ParticipantID = req.body.participantID;
     
     let query = "INSERT INTO `AssociationTable`(ParticipantID) "
-                    + "VALUES ("+ParticipantID+");";
+                    + "VALUES (" + ParticipantID + ");";
     let output = connection.query(query, (err, result) => {
         if(err) {
             return res.send(err);
@@ -85,10 +92,18 @@ router.post("/InsertAssociation", (req, res) => {
 
 /*
     Http Request for inserting data into the dataTable using url params
-    Example Usage: http://localhost:5000/api/InsertData/1/1/1/1/1/1/1
+    Example Usage: http://localhost:5000/api/InsertData
+    Requesting Body: {
+        sessionID: %d,
+        e4Time: %.10f,
+        bvp: %.10f,
+        eda: %.10f,
+        ibi: %.10f,
+        heartRate: %.10f,
+        temperature: %.10f
+    }
 */
 router.post("/InsertData", (req, res) => {
-    console.log(req.params);
     console.log(req.body);
     let SessionID = req.body.sessionID;
     let E4Time = req.body.e4Time;
@@ -112,9 +127,15 @@ router.post("/InsertData", (req, res) => {
 /*
     Http Request for inserting data into the AccelerationTable using url params
     Example Usage: http://localhost:5000/api/InsertAcceleration/1/1/1/1/1
+    Requesting Body: {
+        sessionID: %d,
+        e4Time: %.10f,
+        accelX: %d,
+        accelY: %d,
+        accelZ: %d
+    }
 */
 router.post("/InsertAcceleration", (req, res) => {
-    console.log(req.params);
     console.log(req.body);
     let SessionID = req.body.sessionID;
     let E4Time = req.body.e4Time;
