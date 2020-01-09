@@ -15,3 +15,4 @@ A simple Node.js backend used in conjunction with the empactica_app project for 
 - In "keys" ensure that all database login credentials are valid
 - In "index" ensure that the port number is congruent with the port in the empactica_app project
 - Run the "Initializing_database" script on a fresh mysql database.
+- Run "Python3 graph.py {sessionID}" to graph all backend data
