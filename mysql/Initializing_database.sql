@@ -32,4 +32,4 @@ create table AccelerationTable (
 );
 
 USE E4database;
-INSERT INTO `dataTable`(SessionID,UTC,E4Time,BVP,EDA,IBI,HeartRate,Temperature) VALUES (1,NOW(),1,1,1,1,1,1);
+INSERT INTO `DataTable`(SessionID,UTC,E4Time,BVP,EDA,IBI,HeartRate,Temperature) VALUES (1,NOW(),1,1,1,1,1,1);
