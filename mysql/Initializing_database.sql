@@ -10,7 +10,7 @@ create table AssociationTable (
 create table DataTable (
     PrimaryKey int NOT NULL AUTO_INCREMENT,
 	SessionID int NOT NULL,
-    UTC datetime NOT NULL,
+    UTC VARCHAR(50) NOT NULL,
 	E4Time double NOT NULL,
     BVP float(10) NOT NULL,
     EDA float(10) NOT NULL,
@@ -23,7 +23,7 @@ create table DataTable (
 create table AccelerationTable (
     PrimaryKey int NOT NULL AUTO_INCREMENT,
 	SessionId int NOT NULL,
-    UTC datetime NOT NULL,
+    UTC VARCHAR(50) NOT NULL,
     E4Time double NOT NULL,
     AccelX int NOT NULL,
     AccelY int NOT NULL,
@@ -32,4 +32,4 @@ create table AccelerationTable (
 );
 
 USE E4database;
-INSERT INTO `DataTable`(SessionID,UTC,E4Time,BVP,EDA,IBI,HeartRate,Temperature) VALUES (1,NOW(),1,1,1,1,1,1);
+INSERT INTO `DataTable`(SessionID,UTC,E4Time,BVP,EDA,IBI,HeartRate,Temperature) VALUES (1,"2020-01-09 13:47:14.470",1,1,1,1,1,1);

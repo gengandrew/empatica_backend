@@ -95,6 +95,7 @@ router.post("/InsertAssociation", (req, res) => {
     Example Usage: http://localhost:5000/api/InsertData
     Requesting Body: {
         sessionID: %d,
+        utc: %s,
         e4Time: %.10f,
         bvp: %.10f,
         eda: %.10f,
@@ -106,6 +107,7 @@ router.post("/InsertAssociation", (req, res) => {
 router.post("/InsertData", (req, res) => {
     console.log(req.body);
     let SessionID = req.body.sessionID;
+    let UTC = req.body.utc;
     let E4Time = req.body.e4Time;
     let BVP = req.body.bvp;
     let EDA = req.body.eda;
@@ -114,11 +116,13 @@ router.post("/InsertData", (req, res) => {
     let Temperature = req.body.temperature;
     
     let query = "INSERT INTO `DataTable`(SessionID,UTC,E4Time,BVP,EDA,IBI,HeartRate,Temperature) "
-                    + "VALUES ("+SessionID+",NOW(),"+E4Time+","+BVP+","+EDA+","+IBI+","+HeartRate+","+Temperature+");";
+                    + "VALUES ("+SessionID+",'"+UTC+"',"+E4Time+","+BVP+","+EDA+","+IBI+","+HeartRate+","+Temperature+");";
     let output = connection.query(query, (err, result) => {
         if(err) {
+            console.log(err);
             return res.send(err);
         } else {
+            console.log("Sucess!")
             return res.send("Success with query " + query);
         }
     });
@@ -129,6 +133,7 @@ router.post("/InsertData", (req, res) => {
     Example Usage: http://localhost:5000/api/InsertAcceleration/1/1/1/1/1
     Requesting Body: {
         sessionID: %d,
+        utc: %s,
         e4Time: %.10f,
         accelX: %d,
         accelY: %d,
@@ -138,13 +143,14 @@ router.post("/InsertData", (req, res) => {
 router.post("/InsertAcceleration", (req, res) => {
     console.log(req.body);
     let SessionID = req.body.sessionID;
+    let UTC = req.body.utc;
     let E4Time = req.body.e4Time;
     let AccelX = req.body.accelX;
     let AccelY = req.body.accelY;
     let AccelZ = req.body.accelZ;
     
     let query = "INSERT INTO `AccelerationTable`(SessionID,UTC,E4Time,AccelX,AccelY,AccelZ) "
-                    + "VALUES ("+SessionID+",NOW(),"+E4Time+","+AccelX+","+AccelY+","+AccelZ+");";
+                    + "VALUES ("+SessionID+",'"+UTC+"',"+E4Time+","+AccelX+","+AccelY+","+AccelZ+");";
     let output = connection.query(query, (err, result) => {
         if(err) {
             return res.send(err);
