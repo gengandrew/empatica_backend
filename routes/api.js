@@ -53,7 +53,7 @@ router.get("/getAccelerationTableContents", (req, res) => {
         participantID: %d
     }
 */
-router.get("/getSessionID", (req, res) => {
+router.post("/getSessionID", (req, res) => {
     console.log(req.body);
     let ParticipantID = req.body.participantID;
     let query = "SELECT SessionID FROM AssociationTable WHERE ParticipantID="
