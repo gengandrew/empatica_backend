@@ -16,7 +16,7 @@ connection.connect(err => {
   if (err) {
     console.log(err);
   } else {
-    console.log("sucess");
+    console.log("Connection has been successfully made!");
   }
 });
 

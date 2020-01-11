@@ -23,6 +23,7 @@ router.get("/getDataTableContents", (req, res) => {
 
     let output = connection.query(query, (err, result) => {
         if(err) {
+            console.log(err);
             return res.send(err);
         } else {
             return res.send(result);
@@ -39,31 +40,10 @@ router.get("/getAccelerationTableContents", (req, res) => {
 
     let output = connection.query(query, (err, result) => {
         if(err) {
+            console.log(err);
             return res.send(err);
         } else {
             return res.send(result);
-        }
-    });
-});
-
-/*
-    Http Request for getting the SessionID from the AccelerationTable using the ParticipantID
-    Example Usage: http://localhost:5000/api/getSessionID
-    Requesting Body: {
-        participantID: %d
-    }
-*/
-router.post("/getSessionID", (req, res) => {
-    console.log(req.body);
-    let ParticipantID = req.body.participantID;
-    let query = "SELECT SessionID FROM AssociationTable WHERE ParticipantID="
-                    + ParticipantID + ";";
-
-    let output = connection.query(query, (err, result) => {
-        if(err) {
-            return res.send(err);
-        } else {
-            return res.json({sessionID: result[0].SessionID});
         }
     });
 });
@@ -78,14 +58,17 @@ router.post("/getSessionID", (req, res) => {
 router.post("/InsertAssociation", (req, res) => {
     console.log(req.body);
     let ParticipantID = req.body.participantID;
-    
     let query = "INSERT INTO `AssociationTable`(ParticipantID) "
-                    + "VALUES (" + ParticipantID + ");";
+                    + "VALUES (" + ParticipantID + ");" +
+                    "SELECT SessionID FROM `AssociationTable` "
+                    + "WHERE ParticipantID=" + ParticipantID + ";";
+    
     let output = connection.query(query, (err, result) => {
         if(err) {
+            console.log(err);
             return res.send(err);
         } else {
-            return res.send("Success with query " + query);
+            return res.json({sessionID: result[1][0].SessionID});
         }
     });
 });
@@ -114,15 +97,14 @@ router.post("/InsertData", (req, res) => {
     let IBI = req.body.ibi;
     let HeartRate = req.body.heartRate;
     let Temperature = req.body.temperature;
-    
     let query = "INSERT INTO `DataTable`(SessionID,UTC,E4Time,BVP,EDA,IBI,HeartRate,Temperature) "
                     + "VALUES ("+SessionID+",'"+UTC+"',"+E4Time+","+BVP+","+EDA+","+IBI+","+HeartRate+","+Temperature+");";
+    
     let output = connection.query(query, (err, result) => {
         if(err) {
             console.log(err);
             return res.send(err);
         } else {
-            console.log("Sucess!")
             return res.send("Success with query " + query);
         }
     });
@@ -148,11 +130,12 @@ router.post("/InsertAcceleration", (req, res) => {
     let AccelX = req.body.accelX;
     let AccelY = req.body.accelY;
     let AccelZ = req.body.accelZ;
-    
     let query = "INSERT INTO `AccelerationTable`(SessionID,UTC,E4Time,AccelX,AccelY,AccelZ) "
                     + "VALUES ("+SessionID+",'"+UTC+"',"+E4Time+","+AccelX+","+AccelY+","+AccelZ+");";
+
     let output = connection.query(query, (err, result) => {
         if(err) {
+            console.log(err);
             return res.send(err);
         } else {
             return res.send("Success with query " + query);
