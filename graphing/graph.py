@@ -3,6 +3,7 @@ import pymysql
 import sys
 import gc
 
+graphTicks = 150
 sessionID = sys.argv[1]
 
 
@@ -140,8 +141,8 @@ def graphBVPChart():
     
     fig, ax = plt.subplots()
     ax.plot(x, y, color='green', linestyle='solid', linewidth=2)
-    ax.set_xticks(x[::18])
-    ax.set_xticklabels(x[::18], rotation=75)
+    ax.set_xticks(x[::graphTicks])
+    ax.set_xticklabels(x[::graphTicks], rotation=75)
     plt.gcf().subplots_adjust(bottom=0.2)
     plt.xlabel('Time')
     plt.ylabel('BVP Value')
@@ -159,8 +160,8 @@ def graphEDAChart():
     
     fig, ax = plt.subplots()
     ax.plot(x, y, color='green', linestyle='solid', linewidth=2)
-    ax.set_xticks(x[::18])
-    ax.set_xticklabels(x[::18], rotation=75)
+    ax.set_xticks(x[::graphTicks])
+    ax.set_xticklabels(x[::graphTicks], rotation=75)
     plt.gcf().subplots_adjust(bottom=0.2)
     plt.xlabel('Time')
     plt.ylabel('EDA Value')
@@ -178,8 +179,8 @@ def graphIBIChart():
     
     fig, ax = plt.subplots()
     ax.plot(x, y, color='green', linestyle='solid', linewidth=2)
-    ax.set_xticks(x[::18])
-    ax.set_xticklabels(x[::18], rotation=75)
+    ax.set_xticks(x[::graphTicks])
+    ax.set_xticklabels(x[::graphTicks], rotation=75)
     plt.gcf().subplots_adjust(bottom=0.2)
     plt.xlabel('Time')
     plt.ylabel('IBI Value')
@@ -197,8 +198,8 @@ def graphHeartRateChart():
     
     fig, ax = plt.subplots()
     ax.plot(x, y, color='green', linestyle='solid', linewidth=2)
-    ax.set_xticks(x[::18])
-    ax.set_xticklabels(x[::18], rotation=75)
+    ax.set_xticks(x[::graphTicks])
+    ax.set_xticklabels(x[::graphTicks], rotation=75)
     plt.gcf().subplots_adjust(bottom=0.2)
     plt.xlabel('Time')
     plt.ylabel('HeartRate Value')
@@ -216,8 +217,8 @@ def graphTemperatureChart():
     
     fig, ax = plt.subplots()
     ax.plot(x, y, color='green', linestyle='solid', linewidth=2)
-    ax.set_xticks(x[::18])
-    ax.set_xticklabels(x[::18], rotation=75)
+    ax.set_xticks(x[::graphTicks])
+    ax.set_xticklabels(x[::graphTicks], rotation=75)
     plt.gcf().subplots_adjust(bottom=0.2)
     plt.xlabel('Time')
     plt.ylabel('Temperature Value')
