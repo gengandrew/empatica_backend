@@ -3,8 +3,15 @@ import pymysql
 import sys
 import gc
 
-graphTicks = 150
-sessionID = sys.argv[1]
+if(len(sys.argv) < 2):
+    print("Invalid number of paramters!")
+    sys.exit()
+elif(len(sys.argv) == 2):
+    sessionID = sys.argv[1]
+    graphTicks = 150
+else:
+    sessionID = sys.argv[1]
+    graphTicks = int(sys.argv[2])
 
 
 def connect():
