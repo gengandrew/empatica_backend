@@ -154,7 +154,7 @@ def graphBVPChart():
     plt.xlabel('Time')
     plt.ylabel('BVP Value')
     plt.title('BVP vs Time')
-    plt.show()
+    plt.show(block=False)
 
 
 def graphEDAChart():
@@ -173,7 +173,7 @@ def graphEDAChart():
     plt.xlabel('Time')
     plt.ylabel('EDA Value')
     plt.title('EDA vs Time')
-    plt.show()
+    plt.show(block=False)
 
 
 def graphIBIChart():
@@ -192,7 +192,7 @@ def graphIBIChart():
     plt.xlabel('Time')
     plt.ylabel('IBI Value')
     plt.title('IBI vs Time')
-    plt.show()
+    plt.show(block=False)
 
 
 def graphHeartRateChart():
@@ -211,7 +211,7 @@ def graphHeartRateChart():
     plt.xlabel('Time')
     plt.ylabel('HeartRate Value')
     plt.title('HeartRate vs Time')
-    plt.show()
+    plt.show(block=False)
 
 
 def graphTemperatureChart():
