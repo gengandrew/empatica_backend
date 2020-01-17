@@ -15,8 +15,6 @@ let connection = mysql.createConnection(dbConfig);
 connection.connect(err => {
   if (err) {
     console.log(err);
-  } else {
-    console.log("Connection has been successfully made!");
   }
 });
 
