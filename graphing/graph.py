@@ -3,10 +3,10 @@ import pymysql
 import sys
 import gc
 
-if(len(sys.argv) < 2):
+if len(sys.argv) < 2:
     print("Invalid number of paramters!")
     sys.exit()
-elif(len(sys.argv) == 2):
+elif len(sys.argv) == 2:
     sessionID = sys.argv[1]
     graphTicks = 150
 else:
@@ -64,7 +64,6 @@ def getE4Times():
     conn.close()
     gc.collect()
     timeList = [each[0] for each in res]
-    # print(timeList)
     return timeList
 
 
@@ -78,7 +77,6 @@ def getBVP():
     gc.collect()
     bvpList = [[each[0],each[1]] for each in res]
     mergeSortByTime(bvpList)
-    # print(bvpList)
     return bvpList
 
 
@@ -92,7 +90,6 @@ def getEDA():
     gc.collect()
     edaList = [[each[0],each[1]] for each in res]
     mergeSortByTime(edaList)
-    # print(edaList)
     return edaList
 
 
@@ -106,7 +103,6 @@ def getIBI():
     gc.collect()
     ibiList = [[each[0],each[1]] for each in res]
     mergeSortByTime(ibiList)
-    # print(ibiList)
     return ibiList
 
 
@@ -120,7 +116,6 @@ def getHeartRate():
     gc.collect()
     heartRateList = [[each[0],each[1]] for each in res]
     mergeSortByTime(heartRateList)
-    # print(heartRateList)
     return heartRateList
 
 
@@ -134,7 +129,6 @@ def getTemperature():
     gc.collect()
     temperatureList = [[each[0],each[1]] for each in res]
     mergeSortByTime(temperatureList)
-    # print(temperatureList)
     return temperatureList
 
 
