@@ -36,7 +36,7 @@ create table ResponderTable (
     SessionID int NOT NULL,
     UTC VARCHAR(50) NOT NULL,
     Custom_Action VARCHAR(50),
-    Custom_Message VARCHAR(50)
+    Custom_Message VARCHAR(50),
     PRIMARY KEY (PrimaryKey)
 );
 

@@ -16,6 +16,15 @@ router.get("/checkDatabaseConfig", (req, res) => {
 
 /*
     Http Request for Developer side testing tool used to check
+    if the accessed ip address is the correct localhost
+*/
+router.post("/CheckLocalHost", (req, res) => {
+    console.log("Correct LocalHost!");
+    return res.json({message: "Correct LocalHost!"});
+});
+
+/*
+    Http Request for Developer side testing tool used to check
     the contents of the dataTable
 */
 router.get("/getDataTableContents", (req, res) => {
@@ -50,7 +59,7 @@ router.get("/getAccelerationTableContents", (req, res) => {
 
 /*
     Http Request for inserting data into the AssociationTable using url params
-    Example Usage: http://localhost:5000/api/InsertAssociation
+    Example Usage: http://localhost:8006/api/InsertAssociation
     Requesting Body: {
         participantID: %d
     }
@@ -75,7 +84,7 @@ router.post("/InsertAssociation", (req, res) => {
 
 /*
     Http Request for inserting data into the dataTable using url params
-    Example Usage: http://localhost:5000/api/InsertData
+    Example Usage: http://localhost:8006/api/InsertData
     Requesting Body: {
         sessionID: %d,
         utc: %s,
@@ -112,7 +121,7 @@ router.post("/InsertData", (req, res) => {
 
 /*
     Http Request for inserting data into the AccelerationTable using url params
-    Example Usage: http://localhost:5000/api/InsertAcceleration
+    Example Usage: http://localhost:8006/api/InsertAcceleration
     Requesting Body: {
         sessionID: %d,
         utc: %s,
