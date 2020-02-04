@@ -6,7 +6,7 @@ const dbConfig = require("./config/keys");
 const api = require("./routes/api");
 
 const app = express();
-const port = 5000; // Choose port as 5000
+const port = 8006; // Choose port as 8006
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,7 +20,7 @@ connection.connect(err => {
 
 app.use("/api", api);
 
-// Starts the server on listening to backend "localhost:5000"
+// Starts the server on listening to backend "localhost:8006"
 app.listen(port, () => {
   console.log("Server Listening on port " + port);
 });
