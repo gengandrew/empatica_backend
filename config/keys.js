@@ -3,7 +3,7 @@ module.exports =
     host: 'localhost',
     user: 'root',
     password: '12345',
-    database: 'E4database',
+    database: 'DEASA_Database',
     multipleStatements: true
   }
 ;

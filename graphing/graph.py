@@ -18,7 +18,7 @@ def connect():
     conn = pymysql.connect(host='localhost',
                            user='root',
                            password='12345',
-                           db='E4database',
+                           db='DEASA_Database',
                            charset='utf8')
     c = conn.cursor()
     return conn, c

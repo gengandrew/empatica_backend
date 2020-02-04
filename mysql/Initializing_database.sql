@@ -1,5 +1,5 @@
-create database E4database;
-use E4database;
+create database DEASA_Database;
+use DEASA_Database;
 
 create table AssociationTable (
 	SessionID int NOT NULL AUTO_INCREMENT,
@@ -31,5 +31,14 @@ create table AccelerationTable (
     PRIMARY KEY (PrimaryKey)
 );
 
-USE E4database;
+create table ResponderTable (
+    PrimaryKey int NOT NULL AUTO_INCREMENT,
+    SessionID int NOT NULL,
+    UTC VARCHAR(50) NOT NULL,
+    Custom_Action VARCHAR(50),
+    Custom_Message VARCHAR(50)
+    PRIMARY KEY (PrimaryKey)
+);
+
+USE DEASA_Database;
 INSERT INTO `DataTable`(SessionID,UTC,E4Time,BVP,EDA,IBI,HeartRate,Temperature) VALUES (1,"2020-01-09 13:47:14.470",1,1,1,1,1,1);
