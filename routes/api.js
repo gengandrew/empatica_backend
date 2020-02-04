@@ -143,38 +143,4 @@ router.post("/InsertAcceleration", (req, res) => {
     });
 });
 
-/*
-    Http Request for inserting data into the AccelerationTable using url params
-    Example Usage: http://localhost:5000/api/InsertResponse
-    Requesting Body: {
-        sessionID: %d,
-        utc: %s,
-        custom_action: %s,
-        custom_message: %s
-    }
-*/
-router.post("/InsertResponse", (req, res) => {
-    console.log(req.body);
-    let SessionID = req.body.sessionID;
-    let UTC = req.body.utc;
-    let Custom_Action = req.body.custom_action;
-    if(req.body.custom_message == null) {
-        let query = "INSERT INTO `ResponderTable`(SessionID, UTC, Custom_Action, Custom_Message) "
-                        + "VALUES ("+SessionID+", '"+UTC+"', '"+Custom_Action+"', null);";
-    } else {
-        let Custom_Message = req.body.custom_message;
-        let query = "INSERT INTO `ResponderTable`(SessionID, UTC, Custom_Action, Custom_Message) "
-                        + "VALUES ("+SessionID+", '"+UTC+"', '"+Custom_Action+"', '"+Custom_Message+"');";
-    }
-
-    let output = connection.query(query, (err, result) => {
-        if(err) {
-            console.log(err);
-            return res.send(err);
-        } else {
-            return res.send("Success with query " + query);
-        }
-    });
-})
-
 module.exports = router;
