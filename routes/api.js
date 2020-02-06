@@ -5,6 +5,9 @@ const router = express.Router();
 let dbConfig = require("../config/keys");
 let connection = mysql.createConnection(dbConfig);
 
+const faces = ["sad", "neutral", "happy"];
+let face = faces[1];
+
 /*
     Http Request for Developer side testing tool used to check
     if database config is valid
@@ -150,6 +153,25 @@ router.post("/InsertAcceleration", (req, res) => {
             return res.send("Success with query " + query);
         }
     });
+});
+
+/*
+    Http Request for getting the internal state of the face
+*/
+router.get("/getFaceState", (req, res) => {
+    res.json({face: face});
+});
+
+/*
+    Http Request for getting the internal state of the face
+*/
+router.get("/postFaceState/:state", (req, res) => {
+    console.log(req.params);
+    let temp = req.params.state;
+    if(temp >= 0 && temp <= 2) {
+        face = faces[temp];
+    }
+    res.json({result: "success"});
 });
 
 module.exports = router;
