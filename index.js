@@ -4,6 +4,8 @@ const cors = require("cors");
 const mysql = require("mysql");
 const dbConfig = require("./config/keys");
 const api = require("./routes/api");
+let connect = require ("connect");
+let serveStatic = require("serve-static");
 
 const app = express();
 const port = 8006; // Choose port as 8006
@@ -24,3 +26,7 @@ app.use("/api", api);
 app.listen(port, () => {
   console.log("Server Listening on port " + port);
 });
+
+connect().use(serveStatic(__dirname)).listen(8888, function(){
+  console.log("Server running on port 3000!");
+})

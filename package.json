@@ -10,11 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "connect": "^3.7.0",
     "cors": "^2.8.5",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.6",
     "mysql": "^2.17.1",
-    "req-flash": "0.0.3"
+    "req-flash": "0.0.3",
+    "serve-static": "^1.14.1"
   }
 }
