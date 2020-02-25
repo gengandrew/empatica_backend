@@ -156,6 +156,40 @@ router.post("/InsertAcceleration", (req, res) => {
 });
 
 /*
+    Http Request for inserting data into the AccelerationTable using url params
+    Example Usage: http://localhost:8006/api/InsertAcceleration
+    Requesting Body: {
+        sessionID: %d,
+        utc: %s,
+        e4Time: %.10f,
+        accelX: %d,
+        accelY: %d,
+        accelZ: %d
+    }
+*/
+router.post("/InsertSound", (req, res) => {
+    console.log(req.body);
+    console.log(req.params);
+    // let SessionID = req.body.sessionID;
+    // let UTC = req.body.utc;
+    // let E4Time = req.body.e4Time;
+    // let AccelX = req.body.accelX;
+    // let AccelY = req.body.accelY;
+    // let AccelZ = req.body.accelZ;
+    // let query = "INSERT INTO `AccelerationTable`(SessionID,UTC,E4Time,AccelX,AccelY,AccelZ) "
+    //                 + "VALUES ("+SessionID+",'"+UTC+"',"+E4Time+","+AccelX+","+AccelY+","+AccelZ+");";
+
+    // let output = connection.query(query, (err, result) => {
+    //     if(err) {
+    //         console.log(err);
+    //         return res.send(err);
+    //     } else {
+    //         return res.send("Success with query " + query);
+    //     }
+    // });
+});
+
+/*
     Http Request for getting the internal state of the face
 */
 router.get("/getFaceState", (req, res) => {
