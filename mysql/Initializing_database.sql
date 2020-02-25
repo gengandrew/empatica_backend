@@ -40,5 +40,13 @@ create table ResponderTable (
     PRIMARY KEY (PrimaryKey)
 );
 
+create table VolumeTable (
+    PrimaryKey int NOT NULL AUTO_INCREMENT,
+    SessionID int NOT NULL,
+    UTC VARCHAR(50) NOT NULL,
+    SoundLevel double NOT NULL,
+    PRIMARY KEY (PrimaryKey)
+);
+
 USE DEASA_Database;
 INSERT INTO `DataTable`(SessionID,UTC,E4Time,BVP,EDA,IBI,HeartRate,Temperature) VALUES (1,"2020-01-09 13:47:14.470",1,1,1,1,1,1);

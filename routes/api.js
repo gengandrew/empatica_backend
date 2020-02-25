@@ -170,23 +170,21 @@ router.post("/InsertAcceleration", (req, res) => {
 router.post("/InsertSound", (req, res) => {
     console.log(req.body);
     console.log(req.params);
-    // let SessionID = req.body.sessionID;
-    // let UTC = req.body.utc;
-    // let E4Time = req.body.e4Time;
-    // let AccelX = req.body.accelX;
-    // let AccelY = req.body.accelY;
-    // let AccelZ = req.body.accelZ;
-    // let query = "INSERT INTO `AccelerationTable`(SessionID,UTC,E4Time,AccelX,AccelY,AccelZ) "
-    //                 + "VALUES ("+SessionID+",'"+UTC+"',"+E4Time+","+AccelX+","+AccelY+","+AccelZ+");";
+    //let SessionID = req.body.sessionID;
+    let SessionID = 99;
+    let SoundLevel = req.body.level;
+    let UTC = req.body.utc;
+    let query = "INSERT INTO `VolumeTable`(SessionID,UTC,SoundLevel) "
+                    + "VALUES ("+SessionID+",'"+UTC+"',"+SoundLevel+");";
 
-    // let output = connection.query(query, (err, result) => {
-    //     if(err) {
-    //         console.log(err);
-    //         return res.send(err);
-    //     } else {
-    //         return res.send("Success with query " + query);
-    //     }
-    // });
+    let output = connection.query(query, (err, result) => {
+        if(err) {
+            console.log(err);
+            return res.send(err);
+        } else {
+            return res.send("Success with query " + query);
+        }
+    });
 });
 
 /*

@@ -26,7 +26,3 @@ app.use("/api", api);
 app.listen(port, () => {
   console.log("Server Listening on port " + port);
 });
-
-connect().use(serveStatic(__dirname)).listen(8888, function(){
-  console.log("Server running on port 3000!");
-})
