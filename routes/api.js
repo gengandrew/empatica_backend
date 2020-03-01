@@ -117,7 +117,8 @@ router.post("/InsertData", (req, res) => {
     }
     console.log(req.body);
     // let SessionID = req.body.sessionID;
-    let UTC = req.body.utc;
+    // let UTC = req.body.utc;
+    let UTC = new Date().toUTCString();
     let E4Time = req.body.e4Time;
     let BVP = req.body.bvp;
     let EDA = req.body.eda;
@@ -156,7 +157,8 @@ router.post("/InsertAcceleration", (req, res) => {
     }
     console.log(req.body);
     // let SessionID = req.body.sessionID;
-    let UTC = req.body.utc;
+    // let UTC = req.body.utc;
+    let UTC = new Date().toUTCString();
     let E4Time = req.body.e4Time;
     let AccelX = req.body.accelX;
     let AccelY = req.body.accelY;
@@ -192,10 +194,10 @@ router.post("/InsertSound", (req, res) => {
         return;
     }
     console.log(req.body);
-    console.log(req.params);
     // let SessionID = req.body.sessionID;
+    // let UTC = req.body.utc;
+    let UTC = new Date().toUTCString();
     let SoundLevel = req.body.level;
-    let UTC = req.body.utc;
     let query = "INSERT INTO `VolumeTable`(SessionID,UTC,SoundLevel) "
                     + "VALUES ("+SessionID+",'"+UTC+"',"+SoundLevel+");";
 
