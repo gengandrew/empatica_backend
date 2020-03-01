@@ -4,12 +4,12 @@ const router = express.Router();
 
 let dbConfig = require("../config/keys");
 let connection = mysql.createConnection(dbConfig);
-
+let toggleDatabase = false;
 const SessionID = process.argv.slice(2)[0];
-console.log(SessionID);
+console.log("Initializing SessionID as " + SessionID);
 if(SessionID === undefined) {
-  console.log("No SessionID was provided")
-  process.exit(0)
+    console.log("No SessionID was provided");
+    process.exit(0);
 }
 
 const faces = ["sad", "neutral", "happy"];
@@ -75,6 +75,10 @@ router.get("/getAccelerationTableContents", (req, res) => {
     }
 */
 router.post("/InsertAssociation", (req, res) => {
+    if(toggleDatabase == false) {
+        console.log("Database is not toggled!");
+        return;
+    }
     console.log(req.body);
     let ParticipantID = req.body.participantID;
     let query = "INSERT INTO `AssociationTable`(ParticipantID) "
@@ -107,6 +111,10 @@ router.post("/InsertAssociation", (req, res) => {
     }
 */
 router.post("/InsertData", (req, res) => {
+    if(toggleDatabase == false) {
+        console.log("Database is not toggled!");
+        return;
+    }
     console.log(req.body);
     // let SessionID = req.body.sessionID;
     let UTC = req.body.utc;
@@ -142,6 +150,10 @@ router.post("/InsertData", (req, res) => {
     }
 */
 router.post("/InsertAcceleration", (req, res) => {
+    if(toggleDatabase == false) {
+        console.log("Database is not toggled!");
+        return;
+    }
     console.log(req.body);
     // let SessionID = req.body.sessionID;
     let UTC = req.body.utc;
@@ -175,6 +187,10 @@ router.post("/InsertAcceleration", (req, res) => {
     }
 */
 router.post("/InsertSound", (req, res) => {
+    if(toggleDatabase == false) {
+        console.log("Database is not toggled!");
+        return;
+    }
     console.log(req.body);
     console.log(req.params);
     // let SessionID = req.body.sessionID;
@@ -191,6 +207,21 @@ router.post("/InsertSound", (req, res) => {
             return res.send("Success with query " + query);
         }
     });
+});
+
+/*
+    Http Request for toggle the toggleDatabase variable between true and false
+    Example Usage: http://localhost:8006/api/DataCollectionToggle
+    Requesting Body: { }
+*/
+router.post("/DataCollectionToggle", (req, res) => {
+    let temp = toggleDatabase;
+    if(temp == true) {
+        toggleDatabase = false;
+    } else {
+        toggleDatabase = true;
+    }
+    console.log("Toggling database from " + temp + " to " + toggleDatabase);
 });
 
 /*
