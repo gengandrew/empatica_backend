@@ -197,7 +197,7 @@ router.post("/InsertSound", (req, res) => {
         let SoundLevel = req.body.level;
         let query = "INSERT INTO `VolumeTable`(SessionID,UTC,SoundLevel) "
                         + "VALUES ("+SessionID+",'"+UTC+"',"+SoundLevel+");";
-
+        console.log(query);
         let output = connection.query(query, (err, result) => {
             if(err) {
                 console.log(err);
