@@ -5,6 +5,13 @@ const router = express.Router();
 let dbConfig = require("../config/keys");
 let connection = mysql.createConnection(dbConfig);
 
+const SessionID = process.argv.slice(2)[0];
+console.log(SessionID);
+if(SessionID === undefined) {
+  console.log("No SessionID was provided")
+  process.exit(0)
+}
+
 const faces = ["sad", "neutral", "happy"];
 let face = faces[1];
 
@@ -101,7 +108,7 @@ router.post("/InsertAssociation", (req, res) => {
 */
 router.post("/InsertData", (req, res) => {
     console.log(req.body);
-    let SessionID = req.body.sessionID;
+    // let SessionID = req.body.sessionID;
     let UTC = req.body.utc;
     let E4Time = req.body.e4Time;
     let BVP = req.body.bvp;
@@ -136,7 +143,7 @@ router.post("/InsertData", (req, res) => {
 */
 router.post("/InsertAcceleration", (req, res) => {
     console.log(req.body);
-    let SessionID = req.body.sessionID;
+    // let SessionID = req.body.sessionID;
     let UTC = req.body.utc;
     let E4Time = req.body.e4Time;
     let AccelX = req.body.accelX;
@@ -170,8 +177,7 @@ router.post("/InsertAcceleration", (req, res) => {
 router.post("/InsertSound", (req, res) => {
     console.log(req.body);
     console.log(req.params);
-    //let SessionID = req.body.sessionID;
-    let SessionID = 99;
+    // let SessionID = req.body.sessionID;
     let SoundLevel = req.body.level;
     let UTC = req.body.utc;
     let query = "INSERT INTO `VolumeTable`(SessionID,UTC,SoundLevel) "

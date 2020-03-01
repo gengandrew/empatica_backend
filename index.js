@@ -4,8 +4,6 @@ const cors = require("cors");
 const mysql = require("mysql");
 const dbConfig = require("./config/keys");
 const api = require("./routes/api");
-let connect = require ("connect");
-let serveStatic = require("serve-static");
 
 const app = express();
 const port = 8006; // Choose port as 8006
