@@ -75,25 +75,25 @@ router.get("/getAccelerationTableContents", (req, res) => {
     }
 */
 router.post("/InsertAssociation", (req, res) => {
-    if(toggleDatabase == false) {
-        console.log("Database is not toggled!");
-        return;
-    }
-    console.log(req.body);
-    let ParticipantID = req.body.participantID;
-    let query = "INSERT INTO `AssociationTable`(ParticipantID) "
-                    + "VALUES (" + ParticipantID + ");" +
-                    "SELECT SessionID FROM `AssociationTable` "
-                    + "WHERE ParticipantID=" + ParticipantID + ";";
+    if(toggleDatabase) {
+        console.log(req.body);
+        let ParticipantID = req.body.participantID;
+        let query = "INSERT INTO `AssociationTable`(ParticipantID) "
+                        + "VALUES (" + ParticipantID + ");" +
+                        "SELECT SessionID FROM `AssociationTable` "
+                        + "WHERE ParticipantID=" + ParticipantID + ";";
     
-    let output = connection.query(query, (err, result) => {
-        if(err) {
-            console.log(err);
-            return res.send(err);
-        } else {
-            return res.json({sessionID: result[1][0].SessionID});
-        }
-    });
+        let output = connection.query(query, (err, result) => {
+            if(err) {
+                console.log(err);
+                return res.send(err);
+            } else {
+                return res.json({sessionID: result[1][0].SessionID});
+            }
+        });
+    } else {
+        console.log("Database is not toggled!");
+    }
 });
 
 /*
@@ -111,31 +111,31 @@ router.post("/InsertAssociation", (req, res) => {
     }
 */
 router.post("/InsertData", (req, res) => {
-    if(toggleDatabase == false) {
-        console.log("Database is not toggled!");
-        return;
-    }
-    console.log(req.body);
-    // let SessionID = req.body.sessionID;
-    // let UTC = req.body.utc;
-    let UTC = new Date().toUTCString();
-    let E4Time = req.body.e4Time;
-    let BVP = req.body.bvp;
-    let EDA = req.body.eda;
-    let IBI = req.body.ibi;
-    let HeartRate = req.body.heartRate;
-    let Temperature = req.body.temperature;
-    let query = "INSERT INTO `DataTable`(SessionID,UTC,E4Time,BVP,EDA,IBI,HeartRate,Temperature) "
-                    + "VALUES ("+SessionID+",'"+UTC+"',"+E4Time+","+BVP+","+EDA+","+IBI+","+HeartRate+","+Temperature+");";
+    if(toggleDatabase) {
+        console.log(req.body);
+        // let SessionID = req.body.sessionID;
+        // let UTC = req.body.utc;
+        let UTC = new Date().toUTCString();
+        let E4Time = req.body.e4Time;
+        let BVP = req.body.bvp;
+        let EDA = req.body.eda;
+        let IBI = req.body.ibi;
+        let HeartRate = req.body.heartRate;
+        let Temperature = req.body.temperature;
+        let query = "INSERT INTO `DataTable`(SessionID,UTC,E4Time,BVP,EDA,IBI,HeartRate,Temperature) "
+                        + "VALUES ("+SessionID+",'"+UTC+"',"+E4Time+","+BVP+","+EDA+","+IBI+","+HeartRate+","+Temperature+");";
     
-    let output = connection.query(query, (err, result) => {
-        if(err) {
-            console.log(err);
-            return res.send(err);
-        } else {
-            return res.send("Success with query " + query);
-        }
-    });
+        let output = connection.query(query, (err, result) => {
+            if(err) {
+                console.log(err);
+                return res.send(err);
+            } else {
+                return res.send("Success with query " + query);
+            }
+        });
+    } else {
+        console.log("Database is not toggled!");
+    }
 });
 
 /*
@@ -151,29 +151,29 @@ router.post("/InsertData", (req, res) => {
     }
 */
 router.post("/InsertAcceleration", (req, res) => {
-    if(toggleDatabase == false) {
-        console.log("Database is not toggled!");
-        return;
-    }
-    console.log(req.body);
-    // let SessionID = req.body.sessionID;
-    // let UTC = req.body.utc;
-    let UTC = new Date().toUTCString();
-    let E4Time = req.body.e4Time;
-    let AccelX = req.body.accelX;
-    let AccelY = req.body.accelY;
-    let AccelZ = req.body.accelZ;
-    let query = "INSERT INTO `AccelerationTable`(SessionID,UTC,E4Time,AccelX,AccelY,AccelZ) "
-                    + "VALUES ("+SessionID+",'"+UTC+"',"+E4Time+","+AccelX+","+AccelY+","+AccelZ+");";
+    if(toggleDatabase) {
+        console.log(req.body);
+        // let SessionID = req.body.sessionID;
+        // let UTC = req.body.utc;
+        let UTC = new Date().toUTCString();
+        let E4Time = req.body.e4Time;
+        let AccelX = req.body.accelX;
+        let AccelY = req.body.accelY;
+        let AccelZ = req.body.accelZ;
+        let query = "INSERT INTO `AccelerationTable`(SessionID,UTC,E4Time,AccelX,AccelY,AccelZ) "
+                        + "VALUES ("+SessionID+",'"+UTC+"',"+E4Time+","+AccelX+","+AccelY+","+AccelZ+");";
 
-    let output = connection.query(query, (err, result) => {
-        if(err) {
-            console.log(err);
-            return res.send(err);
-        } else {
-            return res.send("Success with query " + query);
-        }
-    });
+        let output = connection.query(query, (err, result) => {
+            if(err) {
+                console.log(err);
+                return res.send(err);
+            } else {
+                return res.send("Success with query " + query);
+            }
+        });
+    } else {
+        console.log("Database is not toggled!");
+    }
 });
 
 /*
@@ -189,26 +189,26 @@ router.post("/InsertAcceleration", (req, res) => {
     }
 */
 router.post("/InsertSound", (req, res) => {
-    if(toggleDatabase == false) {
-        console.log("Database is not toggled!");
-        return;
-    }
-    console.log(req.body);
-    // let SessionID = req.body.sessionID;
-    // let UTC = req.body.utc;
-    let UTC = new Date().toUTCString();
-    let SoundLevel = req.body.level;
-    let query = "INSERT INTO `VolumeTable`(SessionID,UTC,SoundLevel) "
-                    + "VALUES ("+SessionID+",'"+UTC+"',"+SoundLevel+");";
+    if(toggleDatabase) {
+        console.log(req.body);
+        // let SessionID = req.body.sessionID;
+        // let UTC = req.body.utc;
+        let UTC = new Date().toUTCString();
+        let SoundLevel = req.body.level;
+        let query = "INSERT INTO `VolumeTable`(SessionID,UTC,SoundLevel) "
+                        + "VALUES ("+SessionID+",'"+UTC+"',"+SoundLevel+");";
 
-    let output = connection.query(query, (err, result) => {
-        if(err) {
-            console.log(err);
-            return res.send(err);
-        } else {
-            return res.send("Success with query " + query);
-        }
-    });
+        let output = connection.query(query, (err, result) => {
+            if(err) {
+                console.log(err);
+                return res.send(err);
+            } else {
+                return res.send("Success with query " + query);
+            }
+        });
+    } else {
+        console.log("Database is not toggled!");
+    }
 });
 
 /*
@@ -243,23 +243,22 @@ router.get("/postFaceState/:state", (req, res) => {
     if(temp >= 0 && temp <= 2) {
         face = faces[temp];
     }
-    if(toggleDatabase == false) {
+    if(toggleDatabase) {
+        let Custom_Action = "ACTION_" + faces[temp].toUpperCase();
+        let query = "INSERT INTO `ResponderTable`(SessionID,UTC,Custom_Action,Custom_Message) "
+                        + "VALUES ("+SessionID+",'"+UTC+"','"+Custom_Action+"',"+null+");";
+
+        let output = connection.query(query, (err, result) => {
+            if(err) {
+                console.log(err);
+                return res.send(err);
+            } else {
+                return res.json({result: "success"});
+            }
+        });
+    } else {
         console.log("Database is not toggled!");
-        return;
     }
-
-    let Custom_Action = "ACTION_" + faces[temp].toUpperCase();
-    let query = "INSERT INTO `ResponderTable`(SessionID,UTC,Custom_Action,Custom_Message) "
-                    + "VALUES ("+SessionID+",'"+UTC+"','"+Custom_Action+"',"+null+");";
-
-    let output = connection.query(query, (err, result) => {
-        if(err) {
-            console.log(err);
-            return res.send(err);
-        } else {
-            return res.json({result: "success"});
-        }
-    });
 });
 
 module.exports = router;
