@@ -236,11 +236,28 @@ router.get("/getFaceState", (req, res) => {
 */
 router.get("/postFaceState/:state", (req, res) => {
     console.log(req.params);
+    let UTC = new Date().toUTCString();
     let temp = req.params.state;
     if(temp >= 0 && temp <= 2) {
         face = faces[temp];
     }
-    res.json({result: "success"});
+    if(toggleDatabase == false) {
+        console.log("Database is not toggled!");
+        return;
+    }
+
+    let Custom_Action = "ACTION_" + faces[temp].toUpperCase();
+    let query = "INSERT INTO `ResponderTable`(SessionID,UTC,Custom_Action,Custom_Message) "
+                    + "VALUES ("+SessionID+",'"+UTC+"','"+Custom_Action+"',"+null+");";
+
+    let output = connection.query(query, (err, result) => {
+        if(err) {
+            console.log(err);
+            return res.send(err);
+        } else {
+            return res.json({result: "success"});
+        }
+    });
 });
 
 module.exports = router;
