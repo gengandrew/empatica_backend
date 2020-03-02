@@ -218,11 +218,7 @@ router.post("/InsertSound", (req, res) => {
 */
 router.post("/DataCollectionToggle", (req, res) => {
     let temp = toggleDatabase;
-    if(temp == true) {
-        toggleDatabase = false;
-    } else {
-        toggleDatabase = true;
-    }
+    toggleDatabase = req.body.value;
     console.log("Toggling database from " + temp + " to " + toggleDatabase);
 });
 
