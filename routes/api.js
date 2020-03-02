@@ -258,6 +258,7 @@ router.get("/postFaceState/:state", (req, res) => {
         });
     } else {
         console.log("Database is not toggled!");
+        return res.json({result: "success"});
     }
 });
 
