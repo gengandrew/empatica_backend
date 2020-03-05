@@ -48,5 +48,14 @@ create table VolumeTable (
     PRIMARY KEY (PrimaryKey)
 );
 
+create table FaceTable (
+    PrimaryKey int NOT NULL AUTO_INCREMENT,
+    SessionID int NOT NULL,
+    UTC VARCHAR(50) NOT NULL,
+    Landmark_Number int NOT NULL,
+    Distance double NOT NULL,
+    PRIMARY KEY (PrimaryKey)
+);
+
 USE DEASA_Database;
 INSERT INTO `DataTable`(SessionID,UTC,E4Time,BVP,EDA,IBI,HeartRate,Temperature) VALUES (1,"2020-01-09 13:47:14.470",1,1,1,1,1,1);
