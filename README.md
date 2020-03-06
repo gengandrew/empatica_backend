@@ -20,4 +20,5 @@ A simple Node.js backend used in conjunction with the empactica_app project for 
 ## Getting started
 
 - Run "nodemon index.js" to start backend services.
-- Run "Python3 graph.py {sessionID} {Optional_Tick_Number}" to graph all pushed backend data of that sessionID.
+- Run "Python3 graph_empactica.py {sessionID} {Optional_Tick_Number}" to graph all pushed empactica data of that sessionID.
+- Run "Python3 graph_face.py {sessionID}" to graph all pushed facial landmarking data of that sessionID.
