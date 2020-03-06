@@ -19,15 +19,15 @@ A simple Node.js backend used in conjunction with the empactica_app project for 
 
 ## Getting started
 
-- Run the following to start backend services:
+Run the following to start backend services:
 ````
 nodemon index.js
 ````
-- Run the following to graph all pushed empactica data of that sessionID:
+Run the following to graph all pushed empactica data of that sessionID:
 ````
 python3 graph_empactica.py {sessionID} {Optional_Tick_Number}
 ````
-- Run the following to graph all pushed facial landmarking data of that sessionID:
+Run the following to graph all pushed facial landmarking data of that sessionID:
 ````
 python3 graph_face.py {sessionID}
 ````
