@@ -1,12 +1,6 @@
 create database DEASA_Database;
 use DEASA_Database;
 
-create table AssociationTable (
-	SessionID int NOT NULL AUTO_INCREMENT,
-    ParticipantID int NOT NULL,
-    PRIMARY KEY (SessionID)
-);
-
 create table DataTable (
     PrimaryKey int NOT NULL AUTO_INCREMENT,
 	SessionID int NOT NULL,
