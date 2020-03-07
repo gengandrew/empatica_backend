@@ -1,4 +1,5 @@
 const express = require("express");
+const moment = require('moment');
 const mysql = require("mysql");
 const router = express.Router();
 
@@ -6,6 +7,7 @@ let dbConfig = require("../config/keys");
 let connection = mysql.createConnection(dbConfig);
 let toggleDatabase = false;
 const SessionID = process.argv.slice(2)[0];
+
 console.log("Initializing SessionID as " + SessionID);
 if(SessionID === undefined) {
     console.log("No SessionID was provided");
@@ -115,7 +117,7 @@ router.post("/InsertData", (req, res) => {
         console.log(req.body);
         // let SessionID = req.body.sessionID;
         // let UTC = req.body.utc;
-        let UTC = new Date().toUTCString();
+        let UTC = moment().utc().format('MM-DD-YYYY HH:mm:ss.SSS');
         let E4Time = req.body.e4Time;
         let BVP = req.body.bvp;
         let EDA = req.body.eda;
@@ -155,7 +157,7 @@ router.post("/InsertAcceleration", (req, res) => {
         console.log(req.body);
         // let SessionID = req.body.sessionID;
         // let UTC = req.body.utc;
-        let UTC = new Date().toUTCString();
+        let UTC = moment().utc().format('MM-DD-YYYY HH:mm:ss.SSS');
         let E4Time = req.body.e4Time;
         let AccelX = req.body.accelX;
         let AccelY = req.body.accelY;
@@ -191,9 +193,7 @@ router.post("/InsertAcceleration", (req, res) => {
 router.post("/InsertSound", (req, res) => {
     if(toggleDatabase) {
         console.log(req.body);
-        // let SessionID = req.body.sessionID;
-        // let UTC = req.body.utc;
-        let UTC = new Date().toUTCString();
+        let UTC = moment().utc().format('MM-DD-YYYY HH:mm:ss.SSS');
         let SoundLevel = req.body.level;
         let query = "INSERT INTO `VolumeTable`(SessionID,UTC,SoundLevel) "
                         + "VALUES ("+SessionID+",'"+UTC+"',"+SoundLevel+");";
@@ -234,7 +234,7 @@ router.get("/getFaceState", (req, res) => {
 */
 router.get("/postFaceState/:state", (req, res) => {
     console.log(req.params);
-    let UTC = new Date().toUTCString();
+    let UTC = moment().utc().format('MM-DD-YYYY HH:mm:ss.SSS');
     let temp = req.params.state;
     if(temp >= 0 && temp <= 2) {
         face = faces[temp];
