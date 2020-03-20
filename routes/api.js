@@ -8,7 +8,6 @@ let connection = mysql.createConnection(dbConfig);
 let toggleDatabase = false;
 const SessionID = process.argv.slice(2)[0];
 
-console.log("Initializing SessionID as " + SessionID);
 if(SessionID === undefined) {
     console.log("No SessionID was provided");
     process.exit(0);
@@ -70,7 +69,7 @@ router.get("/getAccelerationTableContents", (req, res) => {
 });
 
 /*
-    Http Request for inserting data into the AssociationTable using url params
+    Http Request for inserting data into the AssociationTable
     Example Usage: http://localhost:8006/api/InsertAssociation
     Requesting Body: {
         participantID: %d
@@ -99,7 +98,7 @@ router.post("/InsertAssociation", (req, res) => {
 });
 
 /*
-    Http Request for inserting data into the dataTable using url params
+    Http Request for inserting data into the dataTable
     Example Usage: http://localhost:8006/api/InsertData
     Requesting Body: {
         sessionID: %d,
@@ -115,8 +114,6 @@ router.post("/InsertAssociation", (req, res) => {
 router.post("/InsertData", (req, res) => {
     if(toggleDatabase) {
         console.log(req.body);
-        // let SessionID = req.body.sessionID;
-        // let UTC = req.body.utc;
         let UTC = moment().utc().format('MM-DD-YYYY HH:mm:ss.SSS');
         let E4Time = req.body.e4Time;
         let BVP = req.body.bvp;
@@ -141,7 +138,7 @@ router.post("/InsertData", (req, res) => {
 });
 
 /*
-    Http Request for inserting data into the AccelerationTable using url params
+    Http Request for inserting data into the AccelerationTable
     Example Usage: http://localhost:8006/api/InsertAcceleration
     Requesting Body: {
         sessionID: %d,
@@ -155,8 +152,6 @@ router.post("/InsertData", (req, res) => {
 router.post("/InsertAcceleration", (req, res) => {
     if(toggleDatabase) {
         console.log(req.body);
-        // let SessionID = req.body.sessionID;
-        // let UTC = req.body.utc;
         let UTC = moment().utc().format('MM-DD-YYYY HH:mm:ss.SSS');
         let E4Time = req.body.e4Time;
         let AccelX = req.body.accelX;
@@ -179,15 +174,10 @@ router.post("/InsertAcceleration", (req, res) => {
 });
 
 /*
-    Http Request for inserting data into the AccelerationTable using url params
-    Example Usage: http://localhost:8006/api/InsertAcceleration
+    Http Request for inserting data into the VolumeTable
+    Example Usage: http://localhost:8006/api/InsertSound
     Requesting Body: {
-        sessionID: %d,
-        utc: %s,
-        e4Time: %.10f,
-        accelX: %d,
-        accelY: %d,
-        accelZ: %d
+        level: %.10f
     }
 */
 router.post("/InsertSound", (req, res) => {
@@ -230,7 +220,7 @@ router.get("/getFaceState", (req, res) => {
 });
 
 /*
-    Http Request for getting the internal state of the face
+    Http Request for updating the internal state of the face
 */
 router.get("/postFaceState/:state", (req, res) => {
     console.log(req.params);
