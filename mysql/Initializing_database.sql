@@ -47,7 +47,8 @@ create table FaceTable (
     SessionID int NOT NULL,
     UTC VARCHAR(50) NOT NULL,
     Landmark_Number int NOT NULL,
-    Distance double NOT NULL,
+    X_Point double NOT NULL,
+    Y_Point double NOT NULL,
     PRIMARY KEY (PrimaryKey)
 );
 
