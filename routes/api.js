@@ -114,7 +114,7 @@ router.post("/InsertAssociation", (req, res) => {
 router.post("/InsertData", (req, res) => {
     if(toggleDatabase) {
         console.log(req.body);
-        let UTC = moment().utc().format('MM-DD-YYYY HH:mm:ss.SSS');
+        let UTC = moment().utc().format('YYYY-MM-DD HH:mm:ss.SSS');
         let E4Time = req.body.e4Time;
         let BVP = req.body.bvp;
         let EDA = req.body.eda;
@@ -152,7 +152,7 @@ router.post("/InsertData", (req, res) => {
 router.post("/InsertAcceleration", (req, res) => {
     if(toggleDatabase) {
         console.log(req.body);
-        let UTC = moment().utc().format('MM-DD-YYYY HH:mm:ss.SSS');
+        let UTC = moment().utc().format('YYYY-MM-DD HH:mm:ss.SSS');
         let E4Time = req.body.e4Time;
         let AccelX = req.body.accelX;
         let AccelY = req.body.accelY;
@@ -183,7 +183,7 @@ router.post("/InsertAcceleration", (req, res) => {
 router.post("/InsertSound", (req, res) => {
     if(toggleDatabase) {
         console.log(req.body);
-        let UTC = moment().utc().format('MM-DD-YYYY HH:mm:ss.SSS');
+        let UTC = moment().utc().format('YYYY-MM-DD HH:mm:ss.SSS');
         let SoundLevel = req.body.level;
         let query = "INSERT INTO `VolumeTable`(SessionID,UTC,SoundLevel) "
                         + "VALUES ("+SessionID+",'"+UTC+"',"+SoundLevel+");";
@@ -224,7 +224,7 @@ router.get("/getFaceState", (req, res) => {
 */
 router.get("/postFaceState/:state", (req, res) => {
     console.log(req.params);
-    let UTC = moment().utc().format('MM-DD-YYYY HH:mm:ss.SSS');
+    let UTC = moment().utc().format('YYYY-MM-DD HH:mm:ss.SSS');
     let temp = req.params.state;
     if(temp >= 0 && temp <= 2) {
         face = faces[temp];
