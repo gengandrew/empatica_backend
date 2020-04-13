@@ -22,7 +22,7 @@ Run the following to install all dependencies:
 ````
 npm install
 ````
-Run the following to just the node.js backend services:
+Run the following to just start the node.js backend services:
 ````
 nodemon index.js
 ````
