@@ -69,36 +69,6 @@ router.get("/getAccelerationTableContents", (req, res) => {
 });
 
 /*
-    Http Request for inserting data into the AssociationTable
-    Example Usage: http://localhost:8006/api/InsertAssociation
-    Requesting Body: {
-        participantID: %d
-    }
-*/
-router.post("/InsertAssociation", (req, res) => {
-    if(toggleDatabase) {
-        console.log(req.body);
-        let ParticipantID = req.body.participantID;
-        let query = "INSERT INTO `AssociationTable`(ParticipantID) "
-                        + "VALUES (" + ParticipantID + ");" +
-                        "SELECT SessionID FROM `AssociationTable` "
-                        + "WHERE ParticipantID=" + ParticipantID + ";";
-    
-        let output = connection.query(query, (err, result) => {
-            if(err) {
-                console.log(err);
-                return res.send(err);
-            } else {
-                return res.json({sessionID: result[1][0].SessionID});
-            }
-        });
-    } else {
-        console.log("Database is not toggled!");
-        return res.json({result: "success"});
-    }
-});
-
-/*
     Http Request for inserting data into the dataTable
     Example Usage: http://localhost:8006/api/InsertData
     Requesting Body: {
