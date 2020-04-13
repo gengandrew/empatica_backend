@@ -94,6 +94,7 @@ router.post("/InsertAssociation", (req, res) => {
         });
     } else {
         console.log("Database is not toggled!");
+        return res.json({result: "success"});
     }
 });
 
@@ -134,6 +135,7 @@ router.post("/InsertData", (req, res) => {
         });
     } else {
         console.log("Database is not toggled!");
+        return res.json({result: "success"});
     }
 });
 
@@ -170,6 +172,7 @@ router.post("/InsertAcceleration", (req, res) => {
         });
     } else {
         console.log("Database is not toggled!");
+        return res.json({result: "success"});
     }
 });
 
@@ -198,6 +201,7 @@ router.post("/InsertSound", (req, res) => {
         });
     } else {
         console.log("Database is not toggled!");
+        return res.json({result: "success"});
     }
 });
 
@@ -210,19 +214,21 @@ router.post("/DataCollectionToggle", (req, res) => {
     let temp = toggleDatabase;
     toggleDatabase = req.body.value;
     console.log("Toggling database from " + temp + " to " + toggleDatabase);
+    return res.json({result: "success"});
 });
 
 /*
     Http Request for getting the internal state of the face
 */
 router.get("/getFaceState", (req, res) => {
-    res.json({face: face});
+    return res.json({face: face});
 });
 
 /*
     Http Request for updating the internal state of the face
 */
 router.get("/postFaceState/:state", (req, res) => {
+    console.log("I'm here!!!")
     console.log(req.params);
     let UTC = moment().utc().format('YYYY-MM-DD HH:mm:ss.SSS');
     let temp = req.params.state;
