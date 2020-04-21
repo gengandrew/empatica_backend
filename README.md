@@ -1,4 +1,4 @@
-# DEASA Node.js Backend
+# DEASA Node Backend
 
 ## About
 
