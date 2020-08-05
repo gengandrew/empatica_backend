@@ -15,7 +15,7 @@
     "ejs": "^3.0.2",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.6",
+    "express-fileupload": "^1.1.9",
     "moment": "^2.24.0",
     "mysql": "^2.18.1",
     "req-flash": "0.0.3",
