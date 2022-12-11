@@ -14,7 +14,7 @@
     "cors": "^2.8.5",
     "ejs": "^3.0.2",
     "errorhandler": "^1.5.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-fileupload": "^1.1.6",
     "moment": "^2.24.0",
     "mysql": "^2.18.1",
